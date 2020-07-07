@@ -1,0 +1,7 @@
+package mybatis;
+
+public class MybatisConnectionFactory {
+	
+	private static SqlSessionFactiry sqlSessionFactory
+
+}

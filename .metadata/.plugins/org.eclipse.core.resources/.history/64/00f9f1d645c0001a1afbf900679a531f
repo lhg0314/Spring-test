@@ -1,0 +1,10 @@
+package dao;
+
+public interface EmpDao {
+
+	public static void selectAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

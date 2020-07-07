@@ -1,0 +1,35 @@
+package controller;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import dao.DeptDao;
+import dao.EmpDao;
+import dto.Emp;
+import mybatis.MyBatisConnectionFactory;
+
+public class EmpEx {
+
+	public static void main(String[] args) {
+		
+				SqlSession sqlSession;
+				
+				
+				SqlSessionFactory factory=MyBatisConnectionFactory.getSqlSessionFactory();
+
+				//마이바티스 수행 객체 생성
+				//sqlSession=factory.openSession();
+				sqlSession=factory.openSession(true);//true면 autoCommit
+				
+				//----------------------------------------------------------------------------------
+				
+				//마이바티스의 매퍼와 자바프로그램의 DAO인터페이스 매핑(연결)
+				DeptDao deptDao=sqlSession.getMapper(DeptDao.class);
+		
+		List<Emp> list=EmpDao. //전체 출력
+
+	}
+
+}

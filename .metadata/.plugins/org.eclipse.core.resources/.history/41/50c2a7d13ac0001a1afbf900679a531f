@@ -1,0 +1,48 @@
+package controller;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import dao.DeptDao;
+import dto.Dept;
+import mybatis.MyBatisConnectionFactory;
+
+public class MyBatisEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//마이바티스 수행객체
+		SqlSession sqlSession;
+		
+		//DB접속및 SqlSession생성 팩토리 객체
+		SqlSessionFactory factory=MyBatisConnectionFactory.getSqlSessionFactory();
+
+		//마이바티스 수행 객체 생성
+		sqlSession=factory.openSession();
+		
+		//----------------------------------------------------------------------------------
+		
+		//마이바티스의 매퍼와 자바프로그램의 DAO인터페이스 매핑(연결)
+		DeptDao deptDao=sqlSession.getMapper(DeptDao.class);
+		
+		//----------------------------------------------------------------------------------
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println(">>조회할 부서번호는?");
+		Dept res=deptDao.selectByDeptno(sc.nextInt());
+		System.out.println(res);
+		
+		System.out.println("-----------------------------------------------------------------");
+		
+		List<Dept> list=deptDao.selectAll();
+		
+		for(Dept dept:list) {
+			System.out.println(dept);
+		}
+	}
+
+}
