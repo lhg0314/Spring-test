@@ -20,7 +20,7 @@
   </select>
   
   <delete id="deleteByEmpNo">
-  	DELETE FROM emp where empno=#{empno}
+  	DELETE FROM emp where empno=#{empno }
   </delete>
   
   </mapper>

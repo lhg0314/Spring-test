@@ -5,16 +5,20 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+	<!-- DB접속정보를 Properties 파일에서 추출해오기 -->
+	<properties resource="mybatis/db.properties" /> 
+
 	<environments default="developer">
 		<environment id="developer">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver"
-					value="oracle.jdbc.driver.OracleDriver" />
+					value="${driver}" />
 				<property name="url"
-					value="jdbc:oracle:thin:@localhost:1521:xe" />
-				<property name="username" value="scott" />
-				<property name="password" value="tiger" />
+					value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
 			</dataSource>
 		</environment>
 	</environments>
