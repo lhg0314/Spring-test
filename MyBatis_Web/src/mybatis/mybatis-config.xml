@@ -26,6 +26,8 @@
 	<mappers>
 	<!-- sql 쿼리 mapper정보  -->
  		<mapper resource="web/dao/EmpMapper.xml" /> 
+ 		<mapper resource="selectKey/dao/SelectKeyMapper.xml" /> 
+ 		<mapper resource="dynamic/dao/DynamicQueryMapper.xml" /> 
 	</mappers>
 
 </configuration>

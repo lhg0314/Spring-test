@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="dynamic.dao.DynamicQueryDao">
+   
+   	<select id="select" resultType="hashmap">
+   		SELECT * FROM test_member
+   		<if test="false">
+   		order by no
+   		</if>
+   	</select>
+   	
+   	<select id="select2" parameterType="string" resultType="web.dto.Emp">
+   		SELECT * FROM emp
+   		<if test='ename !=null and !ename.equals("")'>
+   			where ename LIKE '%' || #{ename} ||'%'
+   		</if>
+   	</select>
+   	
+   	<select id="select3" parameterType="web.dto.Emp" resultType="web.dto.Emp" >
+   		SELECT * FROM emp
+   		<if test='(ename !=null and !ename.equals("")) or empno !=null'>
+   			where ename = #{ename} or empno=#{empno}
+   		</if>
+   	
+   	</select>
+   
+</mapper>

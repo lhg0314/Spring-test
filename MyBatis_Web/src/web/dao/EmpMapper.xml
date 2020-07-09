@@ -6,14 +6,44 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="web.dao.EmpDao">
-  	<select id="getList" resultType="web.dto.Emp">
+ 
+ 	<resultMap type="web.dto.Emp" id="Emp">
+ 	
+ 		<id column="empno" property="empno"/>
+ 		<result column="ename" property="ename" />
+ 		<result column="job" property="job" />
+ 		<result column="mgr" property="mgr" />
+ 		<result column="hiredate" property="hiredate" />
+ 		<result column="sal" property="sal" />
+ 		<result column="comm" property="comm" />
+ 		<result column="deptno" property="deptno" />
+ 		
+ 	</resultMap> 
+  
+  	<!-- 코드를 재사용할수 있도록하는 태그  -->
+  	<sql id="selectEmp">
   		SELECT * FROM emp
+  	</sql>
+  	
+  	<sql id="whereCond">
+  		WHERE empno=#{empno}
+  	</sql>
+  	
+  	<select id="selectCountAll">
+  		SELECT count(*) FROM (
+  			<include refid="selectEmp"></include>
+  		)
+  	</select>
+  	
+  	<!-- <select id="getList" resultType="web.dto.Emp"> -->
+  	<select id="getList" resultMap="Emp">
+  		<include refid="selectEmp"></include>
   		ORDER BY empno
   	</select>
   	
   	<select id="getEmpByEmpno" parameterType="int" resultType="web.dto.Emp">
-  	 	SELECT * FROM emp
-  	 	WHERE empno=#{empno}
+  	 	<include refid="selectEmp"></include>
+  	 	<include refid="whereCond"></include>
   	
   	</select>
   
