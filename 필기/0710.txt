@@ -1,0 +1,250 @@
+
+ +<if>태그
+
+ -test 속성의 값을 이용하여 조건문을 지정한다
+ -test속성의 값은 "true"/"false"가 되도록 만든다
+ -test속성의 값은 문자열로 처리된다
+ -"true" 나  "false" 가 아니면 "true"로 취급한다
+ -조건의 결과에 따라 쿼리의 추가 여부가 결정된다
+
+	<select id="" parameterType="web.dto.Emp">
+
+		select * from emp
+		where 1=1
+
+		<if test="empno !=null">
+			And empno=#{empno}
+		</if>
+
+		<if test="ename != null and !ename.equals('')">
+			and ename=#{ename}
+		</if>
+
+	</select>
+
+	<select id="" parameterType="string">
+		SELECT * FFROM test
+		<if test="value==null">
+			WHERE testid=#{value}
+		</if>
+
+
+	</select>
+
+
+ +<choose>,<when>,<otherwise>태그
+
+ -if ~else if ~else 구문과 비슷한 제어문 태그
+ -<choose>안에 <when> 태그로 조건문을 작성한다
+ -<when> 태그에 test 속성으로 조건문을 작성하여 else if 같은 역할을한다
+ -<when>태그 들의 마지막으로 <otherwise> 태그를 사용하여 else같은 역할을한다
+
+	ex)	<choose>
+			<when test="조건문"></when>
+			<when test="조건문"></when>
+		....
+			<otherwise>
+			</otherwise>
+		</choose>
+
+
+
+
+
+
+
+
+
+ + <trim> 태그
+
+ -where절이나 update의 set절에서 사용된다
+ -동적쿼리가 전달파라미터에 따라 추가되지 않는 상황에서 AND 나 OR같은 키워드가 
+ 충돌날 수 있는 상황에서 사용한다
+
+ -SET절에서는 마지막 ','를 고려해서 사용한다
+
+ -<trim>태그의 속성
+
+ 	prefix :접두어 지정
+	prefixOverrides : 접두어로 설정한 값과 겹쳐지면 제거할 항목을 지정
+	suffix :접미어 지정
+	suffixOverrides : 접미어로 설정한 값과 겹쳐지면 제거할 항목을 지정
+
+
+
+
+
+ +<foreach>태그
+
+ -반복되는 구문을 동적으로 생성할 때 사용하는 태그
+ -배열/해시맵 타입의 파라미터를 처리할때 유용하다
+ -마이바티스의 전달파라미터는 hashmap으로 처리하는것이 좋다
+ -배열이나 리스트는 해시맵에 put하여 전달한다
+
+	ex)체크박스 선택항목에 대한 조건 처리를 할 때 유용하다
+
+
+
+
+
+
+
+
+ +마이바티스의 SqlSession객체의 구문을 실행하는 메소드
+
+ -<T> T selectOne(String statement, Object Parameter)
+	하나의 객체를 리턴하는 조회구문 수행 메소드
+
+ -<E> List<E> selectList(String statement,Object Parameter)
+	한개 이상의 객체를 리턴하는 조회 구문 수행 메소드
+
+ -<K,V> Map<K,V> selectMap(String statement,Object Parameter,String mapKey)
+	결과 데이터를 Map으로 변환하기 위해 제공되는 메소드
+
+ -<T> Cursor<T> selectCursor(String statement,Object Parameter)
+	결과 데이터를 Cursor객체로 반환하는 메소드
+
+ -int insert(String statement, Object parameter)
+ -int update(String statement, Object parameter)
+ -int delete(String statement, Object parameter)
+	반환데이터는 SQL구문에으해 영양을 받은 레코드 수를 나타낸다
+
+ **위 모든 메소드들은 Object parameter없이 호출될수 있도록 오버로딩 되어있음
+
+
+
+
+
+
+ +마이바티스 매퍼의 쿼리 수행 태그
+
+ -<select>,<insert>,<update>,<delete> 태그
+ -수행할 SQL쿼리에 맞게 태그를 골라 작성하면 된다
+ -쿼리와 똑같지 않은 태그를 사용해도 실행은 되지만 되도록 일치시키도록한다
+
+
+
+
+
+
+ +공통 속성
+
+ -id
+	해당 매퍼 파일에서 우일한 값으로 설정한다
+	해당 네임스테이스에서 구분자 역할을 수행한다
+
+	DAO인터페이스의 추상메소드의 이름과 같은 이름으로 작성하도록한다
+
+ -parameterType
+	쿼리수행에 필요한 전달 파라미터의 데이터타입을 명시하는 속성
+
+ -flushCache
+	구문이 실행될때마다 캐시를 지울 것인지 설정하는 항목(기본값은 false)
+
+
+
+ -timeout
+	데이터베이스 처리 결과를 기다리는 최대시간
+
+ -statementType
+	쿼리 수행방식에 대한 설정
+	Statement, PreparedStatement(기본값), Callable 중 선택
+
+
+
+
+
+
+ +<select> 요소 전용속성
+ -resultType
+	SELECT 수행 결과를 처리할 데이터타입(실제 데이터 타입)
+	참조형(dto)라면 패키지 까지 포함하여 풀네임으로 작성한다
+
+ -resultMap
+	SELECT 수행결과를 처리할 <resultMap>
+	<resultMap>태그를 이용하여 생성한 id를 이용한다
+
+ -useCache
+	구문의 결과를 캐시에 저장할 것인지 설정하는 항목( 기본값은 true )
+
+
+
+ -fetchSize 
+	SELECT결과를 한번에 가져올 크기를 설정하는 속성
+	기본값 10
+	**대용량 데이터 처리가 필요하면 1000개 정도를 설정하는 편
+
+
+ -resultSetType
+	조회 결과값을 읽어오는 동작에 대한 설정
+	DB의 커서 객체 동작을 설정함
+
+	FORWARD_ONLY
+
+	SCROLL_SENSITIVE
+	
+	SCROLL_INSENSITIVE
+
+ +마이비티스의 내장 CACHE(캐시)
+
+ -2가지 내장캐시가 존재함
+
+ 	Local Session Cache
+	Second Level Cache(2nd Level)
+
+ +Local Session Cache(Session Level Cache)
+
+ -SqlSession 객체마다 가지고있는 캐시
+
+ -개발자가 임의로 기능을 해제할 수 없다
+
+ +Second Level Cache
+
+ -Mapper의 namespace마다 존재하는 캐시
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+

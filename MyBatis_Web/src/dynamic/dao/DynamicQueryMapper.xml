@@ -29,5 +29,72 @@
    		</if>
    	
    	</select>
+   	
+   	<select id="select4" parameterType="hashmap" resultType="web.dto.Emp">
+   		SELECT * FROM emp
+   		 <trim prefix="WHERE" prefixOverrides="AND|OR">
+   		 
+   		<choose>
+   			<when test="cate.equals('ename')">
+		   		AND ename=#{keyword}
+   			</when>
+   			<when test="cate.equals('job')">
+		   		AND job=#{keyword}
+   			</when>
+   		</choose>
+   		 </trim>
+   		
+   	</select>
+   	
+   	<!-- trim태그 사용예시  -->
+<!--    	<select id="select5">
+   		SELECT * FROM emp
+   		WHERE deptno=10
+   		<trim prefix="AND(" prefixOverrides="OR" suffix=")">
+  
+   		<if test="job !=null">
+   		OR job LIKE '%' || #{job} || '%'
+   		</if>
+   		<if test="sal !=null">
+   		OR sal > #{sal}
+   		</if>
+   		)
+   		</trim>
+   	</select>
+   	 -->
+   	 
+   	 <!-- trim 사용예시2  -->
+   	 
+<!--    	 <update id="update">
+   	 	UPDATE emp
+   	 	<trim prefix="SET" suffixOverrides=","> 맨마지막에 오는 ,제거해준다 
+   	 	
+   	 	
+   	 	
+   	 		<if test="ename != null">
+   	 		ename=#{ename},
+   	 		</if>
+   	 		<if test="job != null">
+   	 		job=#{job},
+   	 		</if>
+   	 		</trim>
+   	 		
+   	 	WHERE empno= #{empno}
+   	 </update>
+   	
+   	
+   	 -->
+   	
+   	<select id="selectCheckbox" parameterType="hashmap" resultType="web.dto.Emp">
+   		SELECT * FROM emp
+   		<if test="deptnoArr != null">
+   		WHERE deptno IN
+   		<foreach collection="deptnoArr" item="deptno" open="(" close=")" separator=",">
+   			#{deptno}
+   		</foreach>
+   		</if>
+   	</select>
+   	
+   	
    
 </mapper>

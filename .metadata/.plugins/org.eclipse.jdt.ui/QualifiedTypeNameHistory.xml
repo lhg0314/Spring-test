@@ -2,10 +2,16 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="web.service.EmpService"/>
 <fullyQualifiedTypeName name="web.service.EmpServiceImpl"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="web.dao.EmpDao"/>
 <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
 <fullyQualifiedTypeName name="mybatis.MybatisConnectionFactory"/>
+<fullyQualifiedTypeName name="selectKey.dao.SelectKeyDao"/>
+<fullyQualifiedTypeName name="selectKey.dto.TestMember"/>
 <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+<fullyQualifiedTypeName name="dynamic.dao.DynamicQueryDao"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="web.dto.Emp"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
+<fullyQualifiedTypeName name="org.apache.catalina.tribes.util.Arrays"/>
 </qualifiedTypeNameHistroy>
