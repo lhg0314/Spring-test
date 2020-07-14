@@ -9,9 +9,15 @@
 <fullyQualifiedTypeName name="selectKey.dto.TestMember"/>
 <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
 <fullyQualifiedTypeName name="dynamic.dao.DynamicQueryDao"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="web.dto.Emp"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
 <fullyQualifiedTypeName name="org.apache.catalina.tribes.util.Arrays"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.type.Alias"/>
+<fullyQualifiedTypeName name="multiparam.dao.MultiParamDao"/>
+<fullyQualifiedTypeName name="web.dto.Emp"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="dept.dao.DeptDao"/>
+<fullyQualifiedTypeName name="dept.dao.DeptDaoImpl"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="dept.dto.Dept"/>
 </qualifiedTypeNameHistroy>

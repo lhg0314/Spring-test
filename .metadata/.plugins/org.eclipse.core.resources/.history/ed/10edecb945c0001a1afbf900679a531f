@@ -1,7 +1,0 @@
-package dao;
-
-public interface EmpDao {
-
-	public void selectAll();
-
-}

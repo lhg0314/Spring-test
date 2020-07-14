@@ -8,6 +8,25 @@
 
 	<!-- DB접속정보를 Properties 파일에서 추출해오기 -->
 	<properties resource="mybatis/db.properties" /> 
+	
+	<!-- 마이바티스의 동작을 제어하는 설정 태그  -->
+	<!-- properties 밑에 typeAliases위에 둘것  -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	
+	<!-- 자바타입의 이름에 별칭을 붙여주는 설정  -->
+	
+<!-- 	<typeAliases>
+		<typeAlias type="web.dto.Emp" alias="Emp"/>
+	</typeAliases> -->
+	
+	<!-- TypeAlias를 페키지 단위로 선언하는 방법  -->
+	<typeAliases>
+		 <package name="web.dto"/>
+	</typeAliases>
+	
 
 	<environments default="developer">
 		<environment id="developer">
@@ -28,6 +47,8 @@
  		<mapper resource="web/dao/EmpMapper.xml" /> 
  		<mapper resource="selectKey/dao/SelectKeyMapper.xml" /> 
  		<mapper resource="dynamic/dao/DynamicQueryMapper.xml" /> 
+ 		<mapper resource="multiparam/dao/MultiParamMapper.xml" /> 
+ 		<mapper resource="dept/dao/DeptMapper.xml" /> 
 	</mappers>
 
 </configuration>

@@ -15,6 +15,10 @@
    		</if>
    	</select>
    	
+<!--    	<resultMap type="web.dto.Emp" id="">
+   	
+   	</resultMap> -->
+   	
    	<select id="select2" parameterType="string" resultType="web.dto.Emp">
    		SELECT * FROM emp
    		<if test='ename !=null and !ename.equals("")'>
@@ -85,7 +89,9 @@
    	
    	 -->
    	
-   	<select id="selectCheckbox" parameterType="hashmap" resultType="web.dto.Emp">
+   	<select id="selectCheckbox" parameterType="hashmap" 
+   	resultType="EmpDto">
+   	<!-- resultType="web.dto.Emp"> -->
    		SELECT * FROM emp
    		<if test="deptnoArr != null">
    		WHERE deptno IN
