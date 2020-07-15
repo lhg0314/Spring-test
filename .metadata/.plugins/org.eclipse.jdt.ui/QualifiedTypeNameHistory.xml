@@ -20,4 +20,10 @@
 <fullyQualifiedTypeName name="dept.dao.DeptDaoImpl"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="dept.dto.Dept"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
+<fullyQualifiedTypeName name="di.tire.SilverTire"/>
+<fullyQualifiedTypeName name="di.tire.Tire"/>
+<fullyQualifiedTypeName name="di.tire.GoldTire"/>
 </qualifiedTypeNameHistroy>
