@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	 <bean id="myClass" class="test04.MyClass"/>
+	 
+	 <bean id="date" class="java.util.Date">
+	 <!-- Date클래스의 setYear() setMonth() setDate()  -->
+	 	<property name="year" value="2020"></property>
+	 	<property name="month" value="1"></property>
+	 	<property name="date" value="1"></property>
+	 </bean>
+	 
+	 <bean id="score" class="test04.Score">
+	 	 <constructor-arg value="이효진"></constructor-arg>
+	 	 <constructor-arg value="20"></constructor-arg>
+	 	 <constructor-arg value="100"></constructor-arg>
+	 	 <constructor-arg value="70"></constructor-arg>
+	 </bean>
+	 
+	 <bean id="beanTest" class="test04.BeanTest">
+	 
+	 <!-- public BeanTest 호출  -->
+	 <!-- 위에서 만든 date bean으로 참조  -->
+	 <!-- 생성자를 호출하는 태그  -->
+	 <constructor-arg ref="date"/>
+	 
+	 <!-- set MyClass 호출  -->
+	 <!-- 위에서 만든 myClass Bean의 아이디로 참조  -->
+	 <property name="myClass" ref="myClass"></property>
+	 
+	 <!-- 3.setNumber(int num) 호출  -->
+	 <property name="number" value="25"></property>
+	 
+	 <!--4. setArray 호출  -->
+	 <property name="array">
+	 	<array>
+	 		<value>홍길동-a</value>
+	 		<value>임꺽정-a</value>
+	 		<value>김선달-a</value>
+	 	</array>
+	 </property>
+	 
+	 <!-- 5.setList 호출  -->
+	 
+	 <property name="list">
+	 	<list>
+	 		<value>홍길동-L</value>
+	 		<value>임꺽정-L</value>
+	 		<value>김선달-L</value>
+	 	</list>
+	 </property>
+	 
+	 <!-- 6. setSet 호출  -->
+	 
+	 <property name="set">
+	 	<set>
+	 		<value>홍길동-S</value>
+	 		<value>임꺽정-S</value>
+	 		<value>김선달-S</value>
+	 	</set>
+	 </property>
+	 
+	 <!--7. map  -->
+	 <property name="map">
+	 	<map>
+	 		<entry>
+	 			<key><value>1</value></key>
+	 			<value>홍길동-M</value>
+	 		</entry>
+	 		<entry key="2" value="임꺽정-M"></entry>
+	 		<entry key="3" value="김선달-M"></entry>
+	 	</map>
+	 </property>
+	 <!--setProperties  -->
+	 <property name="properties">
+	 	<props>
+	 		<prop key="1">홍길동-P</prop>
+	 		<prop key="2">임꺽정-P</prop>
+	 		<prop key="3">김선달-P</prop>
+	 	</props>
+	 </property>
+	 
+	 <!-- 9. setScore  -->
+	 <property name="score">
+	 	<list>
+	 		<bean class="test04.Score">
+	 			<constructor-arg value="홍길동"></constructor-arg>
+	 			<constructor-arg value="100"></constructor-arg>
+	 			<constructor-arg value="100"></constructor-arg>
+	 			<constructor-arg value="100"></constructor-arg>
+	 		</bean>
+	 		
+	 		<ref bean="score"/>
+	 	</list>
+	 	
+	 </property>
+	 
+	 
+	 
+	 </bean>
+
+
+</beans>

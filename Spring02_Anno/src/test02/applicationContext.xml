@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 컴포넌트 어노테이션을 스캔한다  -->
+	<!-- 컴포넌트 어노테이션은 싱글톤이다  -->
+	<!-- <context:component-scan base-package="test02"/> -->
+	
+<context:annotation-config />
+	<bean id="hong" class="test02.Student" name="hong">
+		<property name="name" value="홍길동"></property>
+		<property name="addr" value="서울시 강남구"></property>
+		<property name="age" value="50"></property>
+	</bean>
+	
+	<bean id="lee" class="test02.Student" name="lee">
+		<property name="name" value="이효진"></property>
+		<property name="addr" value="수원"></property>
+		<property name="age" value="20"></property>
+	</bean>
+	
+	<bean class="test02.School" id="mySchool" >
+		<property name="grade" value="1"></property>
+	</bean> 
+
+</beans>

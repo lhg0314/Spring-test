@@ -24,6 +24,10 @@
   	
   	</insert>
   	
+  	<select id="selectDept" resultType="deptDto" parameterType="deptDto">
+  		SELECT * FROM dept
+  	</select>
+  	
   	<insert id="insert3" parameterType="hashmap">
   		insert into emp(empno,ename,job)
   		values(#{empno},#{ename},#{job})

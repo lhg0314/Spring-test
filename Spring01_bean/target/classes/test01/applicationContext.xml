@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="lee" class="test01.Address">
+	<!-- 생성자로 처리한다  -->
+		<constructor-arg name="name" value="이순신"/>
+		<constructor-arg name="addr" value="서울시 강남구"/>
+		<constructor-arg name="phone" value="01012345678"/>
+	</bean>
+	
+	<bean id="lee2" class="test01.Address">
+	<!-- setter로 처리한다  -->
+		<property name="name" value="홍길동"></property>
+		<property name="addr" value="경기도 수원시"></property>
+		<property name="phone" value="010-2222-2222"></property>
+	</bean>
+
+</beans>

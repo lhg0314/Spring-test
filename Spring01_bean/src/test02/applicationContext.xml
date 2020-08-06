@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+
+	<bean id="lee" class="test02.Address">
+	<!-- 생성자로 처리한다  -->
+		<constructor-arg index="0" value="이순신"/>
+		<constructor-arg index="1" value="서울시 강남구"/>
+		<constructor-arg index="2" value="01012345678"/>
+	</bean>
+	
+	<bean id="lee2" class="test02.Address">
+	<!-- setter로 처리한다  -->
+		<constructor-arg index="0" value="홍길동"></constructor-arg>
+		<constructor-arg index="1" value="경기도 수원시"></constructor-arg>
+		<constructor-arg index="2" value="010-2803-1111"></constructor-arg>
+	</bean>
+
+</beans>

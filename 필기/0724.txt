@@ -1,0 +1,21 @@
+ 1.톰켓버전에 맞는 Dynamic web Project 생성
+	web module이 톰켓버전과 맞는 web.xml파일을 구하기 위함
+
+ 2.Spring legacy프로젝트의 web.xml을 위에서 생성한 프로젝트의 web.xml로 교체
+ 
+ 3.pom.xml이서 자바버전 java 1.8로 교체
+
+	springframework : 5.2.6버전 변경
+	servlet-api: 4.0.1
+		artifact-id 변경 : servlet-api->javax.servlet-api
+	jsp-api : 2.3.3
+		artifact-id변경 : jsp-api ->javax.servlet.jsp-api
+	maven-conpiler-plugin > source : 1.6 -> 1.8
+				target : 1.6 -> 1.8
+	
+ 4.프로젝트 우클릭 ->properties ->project facet
+				 dynamic web module : 2.5 ->4.0
+				 java : 1.6->1.8
+
+ 5.maven project update
+					

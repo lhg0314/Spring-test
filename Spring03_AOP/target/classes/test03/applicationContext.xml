@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- AutoProxyCreater bean과 PointcutAdvisor bean을 등록하지 않고도 aop를 가능하게 해주는 태그  -->
+	<aop:aspectj-autoproxy/>
+	
+	<bean id="man" class="test03.Man"/>
+	<bean id="woman" class="test03.Woman" />
+	<bean id="myAdvice" class="test03.MyAdvice"/>
+	
+		<aop:config>
+			<aop:aspect ref="myAdvice">
+				<aop:before method="before" pointcut="execution(public * *(..))"/>
+				<!-- 타겟 객체가 호출된 이후 advice추가  -->
+				<aop:after method="after" pointcut="execution(public * *(..))"/>
+			</aop:aspect>
+		</aop:config>
+	
+		<!-- proxy 객체 생성  -->
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean> -->
+	<!-- 
+	<bean id="myAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+		<property name="advice" ref="myAdvice"/>
+		 
+		
+		포인트컷표현식 
+		
+		* :모든값을 의미
+		..:0개이상
+		execution([접근제어자],리턴타입,[클래스],메서드이름 패턴(파라미터패턴))
+		
+		 
+		<property name="expression" value="execution(public * test02.*.*(..))"></property>
+		
+		1.excution(public * test2.*.*(..))
+			test02패키지의 모든 클래스 적용
+			하지만 test02으 하위패키지에 솔한 클래스는 적용 x
+			ex)test02.test.play 형태라면 play클래스는 적용되지 않음
+			
+		2.excution(public * test01..*.*(..))
+			test02패키지 및 하위의 모든 패키지의 클래스에 적용
+			ex) test02.test.play 형태에서 play클래스도 적용
+		
+		execution(public * * (..) : 모든 리턴타입 ,모든패키지,모든메서드패턴(파라미터 0개 이상) -->
+		
+	
+	
+
+</beans>

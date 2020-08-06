@@ -1,0 +1,28 @@
+package com.kh.welcome.book;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class BookController {
+	//@requestBody : http Request Message의 body부분에 들어있는 데이터를 
+	//그대로 전달해 준다
+	//request header에 content-type을 application/json
+	//으로 지정하면 해당 json을 자바의 객체로 변환하여 넣어준다
+	
+	@RequestMapping("jacksoncore")
+	public String kakaoBook(@RequestBody Map<String,Object> kakaoBook) {
+		List<Map<String,Object>> JsonData=(List<Map<String, Object>>) kakaoBook.get("documents");
+		
+		for (Map<String, Object> map : JsonData) {
+			System.out.println(map.get("authors"));
+		}
+//		System.out.println(kakaoBook);
+		return "member/join";
+	}
+
+}
