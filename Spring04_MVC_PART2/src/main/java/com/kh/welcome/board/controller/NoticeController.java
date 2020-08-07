@@ -29,6 +29,7 @@ import com.kh.welcome.board.model.service.NoticeServiceImpl;
 import com.kh.welcome.board.model.vo.Notice;
 import com.kh.welcome.member.vo.Member;
 
+import common.exception.FileException;
 import common.util.FileUtil;
 
 @Controller
@@ -48,7 +49,7 @@ public class NoticeController {
 	//사용자가 첨부한 파일이 없어도 List<MultipartFile>의 size()가 1로 잡힌다.
 	//이때 첨부한 파일의 이름은 공백이다
 	@RequestMapping("notice/noticeupload")
-	public String noticeUpload(@RequestParam List<MultipartFile> files,HttpSession session,Notice notice) {
+	public String noticeUpload(@RequestParam List<MultipartFile> files,HttpSession session,Notice notice) throws FileException {
 
 		ModelAndView mav=new ModelAndView();
 
@@ -116,7 +117,7 @@ public class NoticeController {
 	}
 
 	@RequestMapping("notice/modifyUpload")
-	public String modifyUpload(@RequestParam List<MultipartFile> files,HttpSession session,Notice notice,int nIdx) {
+	public String modifyUpload(@RequestParam List<MultipartFile> files,HttpSession session,Notice notice,int nIdx) throws FileException {
 		String root=session.getServletContext().getRealPath("/");
 		notice.setnIdx(nIdx);
 		System.out.println(notice);

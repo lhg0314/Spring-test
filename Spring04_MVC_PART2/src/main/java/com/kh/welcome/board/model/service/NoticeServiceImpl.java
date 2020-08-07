@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.welcome.board.model.dao.NoticeDao;
 import com.kh.welcome.board.model.vo.Notice;
 
+import common.exception.FileException;
 import common.util.FileUtil;
 import common.util.Paging;
 
@@ -23,10 +24,10 @@ public class NoticeServiceImpl implements NoticeService{
 	//메소드 또는 클래스에 작성할수 있다
 	//Class에 지정할 경우,해당클래스의 모든 메서드가
 	//스프링에게 트랜잭션 관리를 위임하게 된다
-	public int insertNotice(Notice notice,List<MultipartFile> files,String root) {
+	public int insertNotice(Notice notice,List<MultipartFile> files,String root) throws FileException {
 		int res=noticeDao.insertNotice(notice);
 		//에러발생을 위한 코드
-		int errNum=10/0;
+		
 		if(!(files.size()==1 &&files.get(0).getOriginalFilename().equals(""))) {//첨부파일이 있을때
 			//파일업로드를 위해FileUtil.fileUpload()호출
 			List<Map<String,String>> filedata=new FileUtil().fileUpload(files, root);
@@ -42,7 +43,7 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDao.insertFile(fileInfo);
 	}
 	
-	public void updateNotice(Notice notice,List<MultipartFile> files,String root) {
+	public void updateNotice(Notice notice,List<MultipartFile> files,String root) throws FileException {
 		int res=noticeDao.updateBoard(notice);//게시물 업데이트
 		if(!(files.size()==1 &&files.get(0).getOriginalFilename().equals(""))) {//첨부파일이 있을때
 			List<Map<String,String>> filedata=new FileUtil().fileUpload(files, root);

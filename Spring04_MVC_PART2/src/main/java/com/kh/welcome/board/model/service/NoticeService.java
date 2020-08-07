@@ -7,13 +7,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.welcome.board.model.vo.Notice;
 
+import common.exception.FileException;
+
 public interface NoticeService {
 	
-	public int insertNotice(Notice notice,List<MultipartFile> files,String root);
+	public int insertNotice(Notice notice,List<MultipartFile> files,String root) throws FileException;
 	
 	public int insertFile(Map<String,String> fileInfo);
 	
-	public void updateNotice(Notice notice,List<MultipartFile> files,String root);
+	public void updateNotice(Notice notice,List<MultipartFile> files,String root) throws FileException;
 	
 												//현재 페이지 //페이지당 노출할 게시글 수
 	public Map<String,Object> selectNoticeList(int curPage,int cntPerPage);

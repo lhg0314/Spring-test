@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import com.kh.welcome.member.dao.MemberDao;
 import com.kh.welcome.member.vo.Member;
 
+import common.exception.MailException;
+
 //@service : bean츠로 등록시켜주는 기능외에는 별다른 기능이 없다
 //component롸 동일 단 가독성을 위해 service 어노테이션을 사용한다
 @Service
@@ -65,7 +67,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectId(userId);
 	}
 	
-	public void mailSending(Member member,String urlPath) {
+	public void mailSending(Member member,String urlPath) throws MailException {
 		
 		String setfrom="lee1009522@naver.com";
 		String tomail=member.getEmail();
@@ -87,7 +89,8 @@ public class MemberServiceImpl implements MemberService{
 		               + member.getEmail()
 		               +"' name='email'>"
 		         + "<button type='submit'>전송하기</button></form>";
-		int errorNum=10/0;//없애라
+		try {
+			int errornum=10/0;
 		mailSender.send(new MimeMessagePreparator() {
 			   public void prepare(MimeMessage mimeMessage) throws MessagingException {
 			     MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
@@ -98,6 +101,10 @@ public class MemberServiceImpl implements MemberService{
 			     
 			   }
 			 });
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new MailException("M_ERROR_01");
+		}
 	}
 
 	public void leavemailSending(Member member) {

@@ -11,8 +11,11 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import common.exception.FileException;
+import common.exception.MailException;
+
 public class FileUtil {
-	public List<Map<String,String>> fileUpload(List<MultipartFile> files,String root){
+	public List<Map<String,String>> fileUpload(List<MultipartFile> files,String root) throws FileException{
 		List<Map<String,String>> fileData=new ArrayList<Map<String,String>>();
 		//rename 뒤에 붙여줄 index
 		int idx=0;
@@ -45,14 +48,16 @@ public class FileUtil {
 		return renameFileName;
 	}
 
-	public void saveFile(MultipartFile mf,String savePath) {
+	public void saveFile(MultipartFile mf,String savePath) throws FileException {
 		//파일을 옮겨담을 파일 객체 생성
 		File fileDate=new File(savePath);
 		try {
+			int errornum=10/0;
 			mf.transferTo(fileDate);
-		} catch (IllegalStateException | IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new FileException("F_Error_01");
 		}
 	}
 

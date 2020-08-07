@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.welcome.member.service.MemberService;
 import com.kh.welcome.member.vo.Member;
 
+import common.exception.MailException;
+
 @Controller
 @RequestMapping("member")
 public class MemberController {
@@ -174,7 +176,7 @@ public class MemberController {
 		}
 	}
 	@RequestMapping("/joinemailcheck")
-	public ModelAndView joinEmailCheck(Member member,HttpServletRequest req) {
+	public ModelAndView joinEmailCheck(Member member,HttpServletRequest req) throws MailException {
 		ModelAndView mav=new ModelAndView();
 		String urlpath=req.getServerName()+":"+req.getServerPort()+req.getContextPath();
 		memberService.mailSending(member, urlpath);
@@ -195,18 +197,7 @@ public class MemberController {
 		return "redirect: /member/login";
 	}
 	
-	@ExceptionHandler(Exception.class)
-	//예외처리를 일괄적으로 할수 있게 도와주는 어노테이션
-	//controller에서만 사용가능하다
-	public ModelAndView ex(Exception e) {
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("alertMsg","에러가 발생했습니다");
-		mav.addObject("url","login");
-		mav.setViewName("common/result");
-		return mav;
-		
-	}
+	
 	
 	
 

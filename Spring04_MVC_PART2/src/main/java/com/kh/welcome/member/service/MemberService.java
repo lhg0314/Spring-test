@@ -4,6 +4,8 @@ import java.util.Map;
 
 import com.kh.welcome.member.vo.Member;
 
+import common.exception.MailException;
+
 public interface MemberService {
 	
 	public int insertMember(Member member);
@@ -15,7 +17,7 @@ public interface MemberService {
 	
 	public int idCheck(String userId);
 	
-	public void mailSending(Member member,String urlPath);
+	public void mailSending (Member member,String urlPath) throws MailException;
 
 	public void leavemailSending(Member member);
 
